@@ -1,0 +1,8 @@
+{
+  "name": "beat-reel",
+  "version": "1.0.0",
+  "description": "一資料夾手機照片 → 對拍的 9:16 直幅短片。去重挑片、Ken Burns、剪點踩拍子、中英雙語地點字幕、emoji 遮臉,附一個可以單獨拿出來用的 Remotion 專案範本。",
+  "author": { "name": "daweihao" },
+  "license": "MIT",
+  "keywords": ["video", "reels", "shorts", "9:16", "remotion", "travel", "photos", "ken-burns"]
+}

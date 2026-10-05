@@ -1,0 +1,6 @@
+node_modules/
+out/
+# 自己的素材不進版控,但保留開箱範例
+public/photos/*/
+public/videos/*/
+!public/photos/example/

@@ -1,0 +1,15 @@
+{
+  "name": "beat-reel",
+  "owner": { "name": "daweihao" },
+  "metadata": {
+    "description": "beat-reel — 一資料夾手機照片剪成對拍的 9:16 直幅短片"
+  },
+  "plugins": [
+    {
+      "name": "beat-reel",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "照片為主的對拍短片。素材分流與挑片、橫幅素材在直幅畫面的版型、節奏與轉場、中英雙語地點字幕、emoji 遮臉。"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "beat-reel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "對拍的 9:16 直幅照片式 reel。一趟旅程一個 config 檔。",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.422",
+    "@remotion/google-fonts": "^4.0.422",
+    "@remotion/transitions": "4.0.422",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "4.0.422",
+    "zod": "3.22.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.5.0"
+  }
+}

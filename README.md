@@ -1,3 +1,5 @@
+<p align="right"><a href="README.en.md">English</a> · <b>繁體中文</b></p>
+
 # beat-reel
 
 把一資料夾手機照片剪成對拍的 9:16 直幅短片。
@@ -14,8 +16,10 @@
 
 - [它解決什麼問題](#它解決什麼問題)
 - [最關鍵的一張圖](#最關鍵的一張圖)
+- [畫面上有哪些東西](#畫面上有哪些東西)
 - [安裝](#安裝)
 - [第一支片怎麼跑](#第一支片怎麼跑)
+- [剪點怎麼踩拍子](#剪點怎麼踩拍子)
 - [config 寫法](#config-寫法)
 - [剪接判斷都在 craft.md](#剪接判斷都在-craftmd)
 - [它不做什麼](#它不做什麼)
@@ -70,6 +74,23 @@
 (不然字幕會壓在照片下緣)、糊底要**壓暗角**(不然是一片均勻的灰)、
 外框要**裁切**(不然遮臉的 emoji 走出去會變成浮在半空的黃球)。
 理由寫在 craft.md。
+
+## 畫面上有哪些東西
+
+每一個元件都對應 config 裡的一個欄位。看懂這張就知道要改哪裡:
+
+<img src="docs/frame-anatomy.png" width="860">
+
+**A 是開場。** 大標題疊在第一個鏡頭上,幾秒後淡出 —— 它不是獨立的一張卡,
+所以第一個鏡頭要挑直幅滿版的,字壓在滿版照片上比壓在模糊底上好看太多。
+`title` / `subtitle` 寫在 trip 層,整趟共用。
+
+**B 是橫幅照片的版型。** 由下往上看:底部漸層讓字在亮畫面上也讀得到、
+`captionEn` 在 `caption` 下面一行(小一號、字距拉開)、照片band 抬高 300px
+所以下半部空出來給字幕、糊底是同一張照片放大 1.25 倍再模糊、
+再壓一層暗角免得糊底看起來像一片灰牆。
+
+直幅照片不會有 band 跟糊底,整張鋪滿,其餘元件位置一樣。
 
 ## 安裝
 
@@ -185,6 +206,22 @@ done
 
 單格不確定用 `npx remotion still src/index.ts Okinawa out.png --frame=N`,
 比算整支快很多。
+
+## 剪點怎麼踩拍子
+
+<img src="docs/beat-timeline.png" width="860">
+
+每個鏡頭佔幾拍由 `beatsPerPhoto`(一般)、`beatsPerCaptioned`(有字幕)
+或單一鏡頭的 `beats` 決定,剪點就落在那些拍子上。
+
+**關鍵在最下面那行:影格要累積後才取整。** 174 BPM 配 30fps 時一拍 = 10.34 影格,
+不是整數。逐張四捨五入再相加的話誤差會一路累積,片尾整個脫拍;
+先累積拍數再換算成影格,誤差永遠小於半格而且不會長大。
+
+轉場跨在剪點上(前後各吃一半),所以鏡頭放長的時候轉場也要跟著加長 ——
+4 影格是配 0.69 秒鏡頭的,鏡頭變成 1.4 秒還用 4 影格會變成「慢慢看 → 啪一聲換掉」。
+
+**要調節奏改拍數,不要改 `bpm`。** BPM 是歌的,改了就脫拍。
 
 ## config 寫法
 
@@ -340,7 +377,9 @@ beat-reel/
 │   ├── plugin.json                  plugin 設定
 │   └── marketplace.json             marketplace 設定
 ├── docs/
-│   └── fit-comparison.png           上面那張對照圖
+│   ├── fit-comparison.png           cover vs contain
+│   ├── frame-anatomy.png            畫面元件對照 config 欄位
+│   └── beat-timeline.png            剪點怎麼踩拍子
 └── skills/beat-reel/
     ├── SKILL.md                     流程(Claude 讀這個)
     ├── scripts/

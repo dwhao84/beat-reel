@@ -28,7 +28,7 @@ import sys
 def run(cmd):
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode != 0:
-        sys.exit(f"ffmpeg 失敗:\n{' '.join(cmd)}\n{r.stderr[-800:]}")
+        sys.exit(f"ffmpeg failed / ffmpeg 失敗:\n{' '.join(cmd)}\n{r.stderr[-800:]}")
 
 
 def main():
@@ -44,7 +44,7 @@ def main():
     os.makedirs(a.out_dir, exist_ok=True)
     trimming = a.start is not None or a.dur is not None
     if trimming and len(a.clips) > 1:
-        sys.exit("--from/--dur 一次只能處理一支片段")
+        sys.exit("--from/--dur takes one clip at a time / 一次只能處理一支片段")
 
     for src in a.clips:
         stem = a.name or os.path.splitext(os.path.basename(src))[0]
@@ -68,8 +68,8 @@ def main():
         mb = os.path.getsize(dst) / 1e6
         print(f"{os.path.basename(dst)}  {mb:.1f} MB")
 
-    print(f"\n放好了 → {a.out_dir}")
-    print("在 trip 檔裡用 { video: \"<檔名>.mp4\", from: <秒>, ... }")
+    print(f"\nstaged / 放好了 → {a.out_dir}")
+    print('reference it as  { video: "<name>.mp4", from: <seconds>, ... }  in the trip config')
 
 
 if __name__ == "__main__":

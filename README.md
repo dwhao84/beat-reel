@@ -109,6 +109,28 @@
 這個資料夾的照片做成 reel
 ```
 
+### 用 Codex / Gemini / 其他 agent
+
+`.claude-plugin/` 跟 SKILL.md 的自動觸發是 Claude Code 專屬的,
+但**內容本身沒有綁任何工具** —— 腳本是純 Python,範本是一般 npm 專案,
+判斷寫在 markdown 裡。
+
+根目錄的 [`AGENTS.md`](AGENTS.md) 就是給非 Claude 的 agent 的完整作業合約
+(Codex 會自動讀這個檔名,Gemini CLI 讀 [`GEMINI.md`](GEMINI.md),內容指向同一份)。
+
+```bash
+git clone https://github.com/dwhao84/beat-reel
+cd beat-reel
+```
+
+然後跟你的 agent 說:
+
+```
+讀 AGENTS.md，照裡面的流程把 ~/Desktop/沖繩 剪成一支 reel
+```
+
+差別只在**它不會自己發現這個 repo** —— 指一次路就好,後面的流程完全一樣。
+
 ### 當一般 npm 專案
 
 `skills/beat-reel/assets/template/` 是一個獨立的 Remotion 專案,不需要 Claude:
@@ -373,6 +395,8 @@ Homebrew 的精簡版 ffmpeg 沒有 `drawtext` 也沒有 libass,**但這套不�
 
 ```
 beat-reel/
+├── AGENTS.md                        給非 Claude 的 agent 的作業合約
+├── GEMINI.md                        指向 AGENTS.md
 ├── .claude-plugin/
 │   ├── plugin.json                  plugin 設定
 │   └── marketplace.json             marketplace 設定

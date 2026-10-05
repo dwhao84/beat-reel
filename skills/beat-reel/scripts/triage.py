@@ -36,9 +36,9 @@ try:
     from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps, ImageStat
 except ImportError:
     sys.exit(
-        "缺 Pillow。在輸出資料夾旁邊開個 venv 就好:\n"
+        "Pillow is required / 缺 Pillow.\n"
         "  python3 -m venv .venv && .venv/bin/pip install Pillow\n"
-        "  .venv/bin/python triage.py ...")
+        "  .venv/bin/python triage.py <src> <out>")
 
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".heic", ".webp"}
 VIDEO_EXT = {".mov", ".mp4", ".m4v"}
@@ -257,12 +257,12 @@ def main():
     a = ap.parse_args()
 
     if not have("ffmpeg") or not have("ffprobe"):
-        sys.exit("缺 ffmpeg。macOS:brew install ffmpeg")
+        sys.exit("ffmpeg and ffprobe are required / 缺 ffmpeg。  brew install ffmpeg")
     os.makedirs(a.out, exist_ok=True)
 
     photos = collect(a.src, PHOTO_EXT)
     videos = collect(a.src, VIDEO_EXT)
-    print(f"原始:照片 {len(photos)}、影片 {len(videos)}")
+    print(f"raw / 原始:  {len(photos)} photos, {len(videos)} videos")
 
     if not a.video_only and photos:
         with open(os.path.join(a.out, "dupes.txt"), "w") as log:
@@ -271,9 +271,9 @@ def main():
             for i, rec in enumerate(keep, 1):
                 fh.write(f"{i:03d}  {rec['f']}  {rec['w']}x{rec['hgt']}  {rec['t']}\n")
         sheets = contact_sheets(a.src, keep, a.out)
-        print(f"照片去重:{len(photos)} → {len(keep)}(併掉 {dropped})")
-        print(f"聯絡表:{len(sheets)} 張 → {a.out}/sheet*.jpg")
-        print(f"清單:{a.out}/index.txt、去重紀錄:{a.out}/dupes.txt")
+        print(f"deduped / 去重:  {len(photos)} → {len(keep)} photos ({dropped} merged)")
+        print(f"contact sheets / 聯絡表:  {len(sheets)} → {a.out}/sheet*.jpg")
+        print(f"index / 清單:  {a.out}/index.txt    merge log / 去重紀錄:  {a.out}/dupes.txt")
 
     if not a.photo_only and videos:
         # 影片也有 " (2)" 複本,照檔名先濾一輪就夠,不值得逐格比對
@@ -284,10 +284,11 @@ def main():
                 seen.add(base)
                 uniq.append(f)
         strips = video_strips(a.src, uniq, a.out)
-        print(f"影片:{len(videos)} → {len(uniq)} 支不重複")
-        print(f"縮圖帶:{len(strips)} 張 → {a.out}/vstrip*.jpg、清單:{a.out}/videos.txt")
+        print(f"videos / 影片:  {len(videos)} → {len(uniq)} unique")
+        print(f"filmstrips / 縮圖帶:  {len(strips)} → {a.out}/vstrip*.jpg    list:  {a.out}/videos.txt")
 
-    print("\n下一步:把 sheet*.jpg 跟 vstrip*.jpg 讀進來看,然後挑。")
+    print("\nNext: open sheet*.jpg and vstrip*.jpg as images, look at them, then select.")
+    print("下一步:把 sheet*.jpg 跟 vstrip*.jpg 讀進來看,然後挑。")
 
 
 if __name__ == "__main__":

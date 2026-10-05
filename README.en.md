@@ -129,6 +129,31 @@ make a reel from ~/Desktop/okinawa
 把這趟的照片剪成一支影片
 ```
 
+### With Codex, Gemini or another agent
+
+The `.claude-plugin/` manifests and SKILL.md's auto-triggering are specific to
+Claude Code, but **the substance is not tied to any tool** — the scripts are
+plain Python, the template is an ordinary npm project, and the judgement lives in
+markdown.
+
+[`AGENTS.md`](AGENTS.md) at the repo root is the full working contract for any
+other agent (Codex reads that filename automatically; Gemini CLI reads
+[`GEMINI.md`](GEMINI.md), which points at the same file).
+
+```bash
+git clone https://github.com/dwhao84/beat-reel
+cd beat-reel
+```
+
+Then tell your agent:
+
+```
+Read AGENTS.md and follow it to cut ~/Desktop/okinawa into a reel
+```
+
+The only difference is that it will not **discover** the repo on its own. Point
+at it once; everything after that is identical.
+
 ### As a plain npm project
 
 `skills/beat-reel/assets/template/` is a standalone Remotion project. No Claude
@@ -419,6 +444,8 @@ ffmpeg's text filters.
 
 ```
 beat-reel/
+├── AGENTS.md                        working contract for non-Claude agents
+├── GEMINI.md                        points at AGENTS.md
 ├── .claude-plugin/
 │   ├── plugin.json                  plugin manifest
 │   └── marketplace.json             marketplace manifest

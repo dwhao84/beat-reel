@@ -11,7 +11,8 @@
 你不用記任何指令。裡面的 Remotion 專案也可以單獨拿出來當一般 npm 專案用。
 
 📊 **分享簡報:** [短影音製作分享.pptx](docs/slides/%E7%9F%AD%E5%BD%B1%E9%9F%B3%E8%A3%BD%E4%BD%9C%E5%88%86%E4%BA%AB.pptx)
-—— 用新加坡這趟當例子,18 頁講完流程、剪接判斷,以及不寫程式的人怎麼用 CapCut 做到同樣的事。
+—— 用新加坡這趟當例子,21 頁講完流程、剪接判斷,以及不寫程式的人怎麼用 CapCut 做到同樣的事;
+也附一頁用 skills 讓 Agent 做影片的流程圖,以及要做大量語音辨識時怎麼用 Whisper。
 
 ---
 
@@ -407,7 +408,7 @@ beat-reel/
 │   ├── fit-comparison.png           cover vs contain
 │   ├── frame-anatomy.png            畫面元件對照 config 欄位
 │   ├── beat-timeline.png            剪點怎麼踩拍子
-│   └── slides/短影音製作分享.pptx   分享簡報(繁中,18 頁)
+│   └── slides/短影音製作分享.pptx   分享簡報(繁中,21 頁)
 └── skills/beat-reel/
     ├── SKILL.md                     流程(Claude 讀這個)
     ├── scripts/

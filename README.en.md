@@ -12,8 +12,9 @@ is enough — you don't have to remember any commands. The Remotion project insi
 also works on its own as an ordinary npm project.
 
 📊 **Talk slides (Traditional Chinese):** [短影音製作分享.pptx](docs/slides/%E7%9F%AD%E5%BD%B1%E9%9F%B3%E8%A3%BD%E4%BD%9C%E5%88%86%E4%BA%AB.pptx)
-— 18 slides walking through the Singapore reel: the workflow, the editing judgement,
-and how non-coders can get the same result in CapCut.
+— 21 slides walking through the Singapore reel: the workflow, the editing judgement,
+and how non-coders can get the same result in CapCut. Also includes a one-page flowchart
+of making a reel with an agent and the skill, plus how to batch-transcribe speech with Whisper.
 
 ---
 
@@ -457,7 +458,7 @@ beat-reel/
 │   ├── fit-comparison.png           cover vs contain
 │   ├── frame-anatomy.png            on-screen elements ↔ config fields
 │   ├── beat-timeline.png            how cuts land on beats
-│   └── slides/短影音製作分享.pptx   talk slides (Traditional Chinese, 18 slides)
+│   └── slides/短影音製作分享.pptx   talk slides (Traditional Chinese, 21 slides)
 └── skills/beat-reel/
     ├── SKILL.md                     the workflow (this is what Claude reads)
     ├── scripts/
